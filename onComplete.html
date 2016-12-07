@@ -1,0 +1,29 @@
+
+ 
+ <script>
+    // <apex:commandButton value="Show"   id="showBtn" onComplete="showOppty();"/>
+    
+    // ref: https://developer.salesforce.com/docs/atlas.en-us.salesforce1.meta/salesforce1/vf_dev_best_practices_pages_multipurpose.htm
+    // ref: https://trailhead.salesforce.com/lex_dev_visualforce/lex_dev_visualforce_navigation
+    
+    function showOppty() {   
+       var url = "/{!$CurrentPage.parameters.id}";
+       var oId = "{!$CurrentPage.parameters.id}";
+       var url2 = "{!URLFOR($Action.Opportunity.View, $CurrentPage.parameters.id )}"
+      
+      
+       if( (typeof sforce != 'undefined') && sforce && (!!sforce.one) ) {
+          //sforce.one.navigateToSObject(oId);
+          sforce.one.navigateToURL(url2, true);
+ 
+       }
+       else {
+         console.log("no sforce.one");
+         // this opens in a new tab
+         window.open(url2, '_blank');
+  
+       }
+        
+    }
+ </script> 
+ 
